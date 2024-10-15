@@ -1,0 +1,185 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    /* Large font size for desktop */
+    color: #ff6f61;
+}
+
+header p {
+    font-size: 1.2rem;
+    /* Standard font size for desktop */
+}
+
+/* Lyrics Section */
+.lyrics {
+    margin-bottom: 40px;
+    overflow: hidden;
+    /* Hide overflow for a clean look */
+    position: relative;
+    /* For positioning children */
+}
+
+.lyrics h2 {
+    font-size: 2rem;
+    /* Title size */
+    color: #ff6f61;
+    margin-bottom: 20px;
+    /* Space below the title */
+}
+
+.lyrics p {
+    font-size: 1.2rem;
+    /* Standard font size */
+    line-height: 1.5;
+    position: relative;
+    /* Position relative to the container */
+    width: 100%;
+    /* Full width for the lyrics */
+    white-space: nowrap;
+    /* Prevent line breaks for scrolling effect */
+}
+
+/* Initially hide all lines */
+.lyrics p span {
+    display: none;
+    /* Hide all lines */
+}
+
+/* Show the first line */
+.lyrics p span:first-child {
+    display: inline;
+    /* Show the first line */
+}
+
+/* Listen Section */
+.listen {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.listen-card {
+    border: 2px solid #ff6f61;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Back Button */
+.back-button {
+    text-align: center;
+}
+
+.back-button button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #ff6f61;
+    color: #fff;
+    font-size: 1rem;
+    /* Standard button size for desktop */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.back-button button:hover {
+    background-color: #ff4f4f;
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 1rem;
+    /* Standard footer size for desktop */
+    color: #555;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+        /* Smaller header size for tablets */
+    }
+
+    header p {
+        font-size: 1rem;
+        /* Smaller paragraph size for tablets */
+    }
+
+    .lyrics h2 {
+        font-size: 1.5rem;
+        /* Smaller title size for tablets */
+    }
+
+    .lyrics p {
+        font-size: 1rem;
+        /* Smaller lyrics size for tablets */
+    }
+
+    .listen-card {
+        padding: 15px;
+        /* Reduced padding for smaller screens */
+    }
+
+    .back-button button {
+        font-size: 0.9rem;
+        /* Smaller button text for tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+        /* Smaller header size for mobile */
+    }
+
+    header p {
+        font-size: 0.9rem;
+        /* Smaller paragraph size for mobile */
+    }
+
+    .lyrics h2 {
+        font-size: 1.2rem;
+        /* Smaller title size for mobile */
+    }
+
+    .lyrics p {
+        font-size: 0.9rem;
+        /* Smaller lyrics size for mobile */
+    }
+
+    .listen-card {
+        padding: 10px;
+        /* Further reduced padding for mobile */
+    }
+
+    .back-button button {
+        font-size: 0.8rem;
+        /* Smaller button text for mobile */
+        padding: 8px 12px;
+        /* Adjust padding for smaller screens */
+    }
+}
