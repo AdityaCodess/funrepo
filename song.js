@@ -1,50 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
     const audio = document.getElementById('audio');
-    const lyricsContainer = document.getElementById('lyrics');
     const lyricsSpans = document.querySelectorAll('#lyrics span');
+    const backButton = document.getElementById('back-button');
 
     // Define your lyrics timings in seconds here
     const timings = [
-        25,   // "Pehle Bhi Main Tumse Mila Hoon"
-        32,   // "Pehli Dafa Hi Milke Laga"
-        38,   // "Toone Chhua Zakhmon Ko Mere"
-        44,   // "Marham Marham Dil Pe Laga"
-        51,   // "Paagal Paagal Hain Thode"
-        54,   // "Baadal Baadal Hain Dono"
-        57,   // "Khul Ke Barse Bheege Aa Zara"
-        63,   // "Pehle Bhi Main Tumse Mila Hoon"
-        69,   // "Pehli Dafa Hi Milke Laga"
-        75,   // "Toone Chhua Zakhmon Ko Mere"
-        82,   // "Marham Marham Dil Pe Laga"
-        88,   // "Music"
-        113,  // "Ghalat Kya Sahi Kya"
-        116,  // "Mujhe Na Pata Hai"
-        119,  // "Tumhein Agar Pata Ho Bata dena"
-        126,  // "Main Arse Se Khud Se"
-        129,  // "Zara Laapata Hoon"
-        132,  // "Tumhein Agar Milun Toh Pata dena"
-        138,  // "Kho Na Jaana Mujhe"
-        141,  // "Dekhte Dekhte"
-        144,  // "Tu Hi Zariya"
-        147,  // "Tu Hi Manzil Hai"
-        150,  // "Ya Ke Dil Hai"
-        153,  // "Itna Bata"
-        156,  // "Toone Chhua Zakhmon Ko Mere"
-        162,  // "Marham Marham Dil Pe Laga"
-        170,  // "Paagal Paagal Hain Thode"
-        173,  // "Baadal Baadal Hain Bheege"
-        175,  // "Barse Barse Bheege Aa Zara"
-        181,  // "Pehle Bhi Main Tumse Mila Hoon"
-        187,  // "Pehli Dafa Hi Milke Laga"
-        194,  // "Toone Chhua Zakhmon Ko Mere"
-        200,  // "Marham Marham Dil Pe Laga"
-        206,  // "Ho Ho Ho Ho…"
-        234   // "Hmm…"
+        25, 32, 38, 44, 51, 54, 57, 63, 69, 75,
+        82, 88, 113, 116, 119, 126, 129, 132, 138,
+        141, 144, 147, 150, 153, 156, 162, 170,
+        173, 175, 181, 187, 194, 200, 206, 234
     ];
 
-    // Start audio playback from 20 seconds
+    // Start audio playback from 25 seconds
     audio.addEventListener("loadedmetadata", () => {
-        audio.currentTime = 25; // Set the starting point at 20 seconds
+        audio.currentTime = 25; // Set the starting point at 25 seconds
     });
 
     audio.addEventListener('play', () => {
@@ -56,6 +25,10 @@ document.addEventListener("DOMContentLoaded", () => {
             span.style.color = ""; // Reset color
             span.style.transform = "translateY(0)"; // Reset position
         });
+
+        // Initially disable the back button
+        backButton.classList.add('disabled');
+        backButton.disabled = true;
 
         const interval = setInterval(() => {
             const currentTime = audio.currentTime;
@@ -70,6 +43,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 currentLine++;
             }
+
+            // Scroll to the back button when the song reaches 206 seconds
+            if (currentTime >= 206) {
+                clearInterval(interval);
+                backButton.scrollIntoView({ behavior: 'smooth' });
+                backButton.classList.remove('disabled'); // Enable back button
+                backButton.disabled = false; // Remove the disabled attribute
+            }
+
             // Stop the interval when all lines have been displayed
             if (currentLine >= timings.length || currentTime >= timings[timings.length - 1] + 5) {
                 clearInterval(interval);

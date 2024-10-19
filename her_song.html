@@ -13,13 +13,15 @@
     <header>
         <h1>Pehle Bhi Mai</h1>
         <p>From the movie <em>Animal</em></p>
+        <p>(Wait for the song to load may take time :>)</p>
+        <p>(also the back button down there is disabled , pura song suno it'll enable , tumhare liye hi hai ye song :>>)</p>
     </header>
 
     <!-- Listen Section -->
     <section class="listen">
         <div class="listen-card">
             <h2>Listen to the Song</h2>
-            <audio controls id="audio" autoplay preload="metadata" >
+            <audio controls id="audio" autoplay preload="metadata">
                 <source src="Pehle Bhi Main_320(PagalWorld.com.sb).mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
@@ -70,12 +72,13 @@
 
     <!-- Back Button -->
     <section class="back-button">
-        <button onclick="window.history.back()">Go Back</button>
+        <button id="back-button" class="disabled" onclick="window.history.back()" disabled>Go Back</button>
     </section>
 
     <!-- Footer -->
     <footer>
         <p>Hope you enjoy the song!</p>
+        <p>Hear the song again or go back there's literally more to go !!</p>
     </footer>
 
     <script src="song.js"></script>

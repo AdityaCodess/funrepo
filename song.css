@@ -108,6 +108,13 @@ header p {
     transform: scale(1.05);
 }
 
+.back-button button.disabled {
+    background-color: #ddd;
+    color: #aaa;
+    cursor: not-allowed;
+    transform: scale(1);
+}
+
 /* Footer */
 footer {
     text-align: center;
