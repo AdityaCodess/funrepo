@@ -1,6 +1,45 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const audio = document.getElementById('audio');
-    const lyricsContainer = document.getElementById('lyrics');
+    const audioElement = document.getElementById("audio");
+
+    // Check if the browser supports MediaSource API for progressive loading
+    if ('MediaSource' in window) {
+        const mediaSource = new MediaSource();
+        audioElement.src = URL.createObjectURL(mediaSource);
+
+        mediaSource.addEventListener('sourceopen', () => {
+            const sourceBuffer = mediaSource.addSourceBuffer('audio/mpeg');
+
+            // Fetch the audio file in chunks
+            fetch('Pehle Bhi Main_320(PagalWorld.com.sb).mp3')
+                .then(response => response.body)
+                .then(body => {
+                    const reader = body.getReader();
+
+                    function read() {
+                        return reader.read().then(({ done, value }) => {
+                            if (done) {
+                                // Signal that the stream has ended
+                                mediaSource.endOfStream();
+                                return;
+                            }
+
+                            // Append the audio chunk to the buffer
+                            sourceBuffer.appendBuffer(value);
+                            return read();
+                        });
+                    }
+
+                    return read();
+                })
+                .catch(error => console.error('Error fetching audio:', error));
+        });
+    } else {
+        console.error('MediaSource API is not supported in this browser.');
+        // Fallback to standard loading if MediaSource is unavailable
+        audioElement.src = "Pehle Bhi Main_320(PagalWorld.com.sb).mp3";
+    }
+
+    // Lyrics Sync Code
     const lyricsSpans = document.querySelectorAll('#lyrics span');
 
     // Define your lyrics timings in seconds here
@@ -42,12 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
         234   // "Hmm…"
     ];
 
-    // Start audio playback from 20 seconds
-    audio.addEventListener("loadedmetadata", () => {
-        audio.currentTime = 25; // Set the starting point at 20 seconds
-    });
-
-    audio.addEventListener('play', () => {
+    audioElement.addEventListener('play', () => {
         let currentLine = 0;
 
         // Hide all lines except the first one
@@ -58,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         const interval = setInterval(() => {
-            const currentTime = audio.currentTime;
+            const currentTime = audioElement.currentTime;
             if (currentLine < timings.length && currentTime >= timings[currentLine]) {
                 // Show the current line
                 lyricsSpans[currentLine].style.display = "inline"; // Show the current line
@@ -70,6 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 currentLine++;
             }
+
             // Stop the interval when all lines have been displayed
             if (currentLine >= timings.length || currentTime >= timings[timings.length - 1] + 5) {
                 clearInterval(interval);
@@ -78,5 +113,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Start audio autoplay
-    audio.play();
+    audioElement.play();
 });
