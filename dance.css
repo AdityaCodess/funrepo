@@ -1,0 +1,179 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom right, #8e44ad, #f1c40f);
+    font-family: Arial, sans-serif;
+    color: #fff;
+    overflow: hidden;
+}
+
+header {
+    text-align: center;
+    padding: 2vh 5vw;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.dance-floor {
+    width: 80vw;
+    height: 60vh;
+    border: 2px dashed #fff;
+    background: rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.dancer {
+    position: absolute;
+    font-size: 5vw;
+    animation: dance 1s infinite;
+}
+
+@keyframes dance {
+    0% {
+        transform: translateY(0);
+    }
+
+    25% {
+        transform: translateY(-10px);
+    }
+
+    50% {
+        transform: translateY(0);
+    }
+
+    75% {
+        transform: translateY(10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #ff6f91;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: #fff;
+}
+
+button:hover {
+    background-color: #ff4c7a;
+}
+
+.clue {
+    margin-top: 20px;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 10px;
+    }
+
+    .dance-floor {
+        width: 90vw;
+        height: 50vh;
+    }
+
+    .dancer {
+        font-size: 10vw;
+    }
+
+    button {
+        padding: 8px 15px;
+        font-size: 1em;
+    }
+
+    .clue {
+        font-size: 1em;
+    }
+}
+
+#backButton {
+    background-color: #e74c3c;
+    margin-top: 10px;
+}
+
+#backButton:hover {
+    background-color: #c0392b;
+}
+
+/* Fade-in animation */
+.fade-in {
+    animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+        /* Optional: adds a subtle upward movement */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Clue Box Styles */
+.clue-box {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    border: 2px solid #ff6f91;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.2em;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    margin: 20px auto;
+    max-width: 600px;
+    /* Maximum width for larger screens */
+    height: 300px;
+    /* Fixed height for the clue box */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+    display: none;
+    /* Initially hidden */
+}

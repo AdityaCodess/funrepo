@@ -6,63 +6,181 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #e3f2fd;
-    color: #333;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom right, #ff6f91, #ffcc70);
+    font-family: Arial, sans-serif;
+    color: #fff;
     overflow: hidden;
+    /* Prevent scrolling */
 }
 
 header {
-    margin: 20px 0;
+    text-align: center;
+    padding: 2vh 5vw;
+    /* Responsive padding */
 }
 
-h1 {
-    font-size: 2.5rem;
-    color: #ff6f61;
-}
-
-.smiley {
-    width: 100px;
-    height: 100px;
-    background-color: #ffcc00;
-    border-radius: 50%;
-    position: absolute;
-    transition: transform 0.2s ease;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.smiley:before,
-.smiley:after {
-    content: '';
-    position: absolute;
-    background-color: #333;
-    border-radius: 50%;
-}
-
-.smiley:before {
-    width: 20px;
-    height: 20px;
-    top: 30%;
-    left: 25%;
-}
-
-.smiley:after {
-    width: 20px;
-    height: 20px;
-    top: 30%;
-    right: 25%;
-}
-
-.smiley:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+main {
+    flex-grow: 1;
+    /* This allows the main section to grow and center the smiley */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /* Allow positioning of sad emojis */
 }
 
 footer {
-    margin-top: 20px;
-    font-size: 1rem;
+    text-align: center;
+    padding: 2vh 5vw;
+    /* Responsive padding */
+}
+
+/* Smiley Face Styles */
+.smiley {
+    width: 20vw;
+    /* Responsive width */
+    height: 20vw;
+    /* Responsive height */
+    max-width: 150px;
+    /* Maximum width */
+    max-height: 150px;
+    /* Maximum height */
+    background-color: #ffeb3b;
+    /* Smiley color */
+    border-radius: 50%;
+    /* Make it round */
+    position: fixed;
+    /* Fixed position to keep it centered */
+    top: 50%;
+    /* Center vertically */
+    left: 50%;
+    /* Center horizontally */
+    transform: translate(-50%, -50%);
+    /* Adjust for size */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s;
+    animation: jelly 0.5s infinite;
+    /* Jelly effect */
+}
+
+/* Jelly Animation */
+@keyframes jelly {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+        /* Scale effect for jelly */
+    }
+}
+
+/* Smiley Face Features */
+.smiley::before,
+.smiley::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background-color: #000;
+    /* Black for eyes */
+}
+
+.smiley::before {
+    width: 5vw;
+    /* Responsive eye size */
+    height: 5vw;
+    /* Responsive eye size */
+    max-width: 20px;
+    /* Maximum width */
+    max-height: 20px;
+    /* Maximum height */
+    top: 20%;
+    /* Adjusted for responsiveness */
+    left: 20%;
+    /* Left eye */
+}
+
+.smiley::after {
+    width: 5vw;
+    /* Responsive eye size */
+    height: 5vw;
+    /* Responsive eye size */
+    max-width: 20px;
+    /* Maximum width */
+    max-height: 20px;
+    /* Maximum height */
+    top: 20%;
+    /* Adjusted for responsiveness */
+    right: 20%;
+    /* Right eye */
+}
+
+/* Smile */
+.mouth {
+    position: absolute;
+    width: 30%;
+    /* Responsive mouth width */
+    height: 15%;
+    /* Responsive mouth height */
+    border: 5px solid #000;
+    /* Mouth outline */
+    border-top-left-radius: 50px;
+    /* Rounded top for a smile */
+    border-top-right-radius: 50px;
+    /* Rounded top for a smile */
+    border-bottom: none;
+    /* Remove bottom border for a smile */
+    bottom: 25%;
+    /* Adjusted for responsiveness */
+    left: 50%;
+    transform: translateX(-50%) rotate(180deg);
+    /* Center mouth */
+}
+
+/* Happy Emoji falling */
+.happy-emoji {
+    position: absolute;
+    font-size: 3vw;
+    /* Responsive size */
+    animation: fall 2s forwards;
+    /* Falling animation */
+}
+
+/* Falling Animation */
+@keyframes fall {
+    from {
+        top: 0;
+    }
+
+    to {
+        top: 100vh;
+        /* Fall to the bottom of the screen */
+    }
+}
+
+/* Media Queries for Small Screens */
+@media (max-width: 600px) {
+    header {
+        padding: 10px;
+        /* Less padding on small screens */
+    }
+
+    footer {
+        padding: 10px;
+        /* Less padding on small screens */
+    }
+
+    .smiley {
+        width: 30vw;
+        /* Increased size for small screens */
+        height: 30vw;
+        /* Increased size for small screens */
+    }
 }
