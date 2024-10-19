@@ -85,9 +85,7 @@ body {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
     cursor: pointer;
     position: relative;
-    /* Added for positioning the pseudo-element */
     overflow: hidden;
-    /* Ensure the pseudo-element doesn't overflow */
 }
 
 /* Add a pseudo-element for a nice hover effect */
@@ -113,12 +111,9 @@ body {
 .card:hover,
 .card.active {
     transform: translateY(-20px) scale(2) rotate(3deg);
-    /* Move up and scale */
     box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
-    /* Larger shadow for depth */
 }
 
-/* Slightly darker background on hover */
 .card:hover {
     background-color: #c57e7e;
     color: pink;

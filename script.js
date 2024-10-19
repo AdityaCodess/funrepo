@@ -13,11 +13,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  //dance option
+  document.querySelectorAll('.dance-option').forEach(button => {
+    button.addEventListener('click', () => {
+      alert("Correct! LET'S DANCE BATTLEEEE!!");
+      score++;
+      updateScore();
+    });
+  });
+
   // Date Question (correct answer: Arcade)
   document.querySelectorAll('.date-option').forEach(button => {
     button.addEventListener('click', () => {
-      if (button.textContent === 'Arcade') {
-        alert("Correct! I’d definitely choose an Arcade.");
+      if (button.textContent === 'Cafe') {
+        alert("Correct! I’d definitely choose a Cafe.");
         score++;
       } else {
         alert("Nice try, but I’d pick the Arcade.");
