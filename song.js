@@ -59,6 +59,4 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 100);
     });
 
-    // Start audio autoplay
-    audio.play();
 });
