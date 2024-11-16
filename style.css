@@ -135,10 +135,12 @@ body {
 
 .question {
     margin: 20px 0;
+    size: 2rem;
 }
 
 .question p {
     font-size: 1.1rem;
+    padding: 20%;
     margin-bottom: 10px;
 }
 
